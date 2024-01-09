@@ -6,10 +6,18 @@ resource "aws_api_gateway_rest_api" "chronos" {
       version = "1.0"
     }
     paths = {
-      "/path1" = {
+      "/horas" = {
         get = {
           x-amazon-apigateway-integration = {
             httpMethod           = "GET"
+            payloadFormatVersion = "1.0"
+            type                 = "HTTP_PROXY"
+            uri                  = "https://ip-ranges.amazonaws.com/ip-ranges.json"
+          }
+        },
+        post = {
+          x-amazon-apigateway-integration = {
+            httpMethod           = "POST"
             payloadFormatVersion = "1.0"
             type                 = "HTTP_PROXY"
             uri                  = "https://ip-ranges.amazonaws.com/ip-ranges.json"
@@ -19,7 +27,7 @@ resource "aws_api_gateway_rest_api" "chronos" {
     }
   })
 
-  name = "example"
+  name = "Chronos"
 
   endpoint_configuration {
     types = ["REGIONAL"]
@@ -38,8 +46,8 @@ resource "aws_api_gateway_deployment" "chronos" {
   }
 }
 
-resource "aws_api_gateway_stage" "chronos" {
+resource "aws_api_gateway_stage" "chronos-dev" {
   deployment_id = aws_api_gateway_deployment.chronos.id
   rest_api_id   = aws_api_gateway_rest_api.chronos.id
-  stage_name    = "example"
+  stage_name    = "dev"
 }
