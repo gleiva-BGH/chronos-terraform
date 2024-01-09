@@ -1,12 +1,10 @@
 data "aws_iam_policy_document" "assume_role" {
   statement {
     effect = "Allow"
-
     principals {
       type        = "Service"
       identifiers = ["lambda.amazonaws.com"]
     }
-
     actions = ["sts:AssumeRole"]
   }
 }
@@ -28,12 +26,9 @@ resource "aws_lambda_function" "test_lambda" {
   filename      = "lambda_function_payload.zip"
   function_name = "lambda_function_name"
   role          = aws_iam_role.iam_for_lambda.arn
-  handler       = "index.test"
-
+  handler       = "index.lambda_handler"
   source_code_hash = data.archive_file.lambda.output_base64sha256
-
-  runtime = "nodejs18.x"
-
+  runtime = "python3.10"
   environment {
     variables = {
       foo = "bar"
