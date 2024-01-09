@@ -11,3 +11,7 @@ provider "aws" {
   profile = "default"  
   region  = "us-east-1"
 }
+
+output "hello_world" {
+  value = "Hello, World!"
+}
