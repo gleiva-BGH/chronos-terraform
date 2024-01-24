@@ -89,7 +89,7 @@ resource "aws_cognito_user_pool" "pool" {
     sms_message           = null
   }
 }
-resource "aws_cognito_user_pool_domain" "main" {
-  domain       = "chronos"
+resource "aws_cognito_user_pool_domain" "chronos" {
+  domain       = "chronos-app"
   user_pool_id = aws_cognito_user_pool.pool.id
 }
