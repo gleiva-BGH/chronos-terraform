@@ -46,7 +46,7 @@ resource "aws_api_gateway_deployment" "chronos" {
   }
 }
 
-resource "aws_api_gateway_stage" "chronos-dev" {
+resource "aws_api_gateway_stage" "dev" {
   deployment_id = aws_api_gateway_deployment.chronos.id
   rest_api_id   = aws_api_gateway_rest_api.chronos.id
   stage_name    = "dev"
