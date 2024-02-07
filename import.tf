@@ -7,7 +7,7 @@
 #   to = aws_dynamodb_table.basic-dynamodb-table
 #   id = "HorasExtra-table"
 # }
-# import {
-#   to = aws_cognito_user_pool.pool
-#   id = "us-east-2_IA8DCWE52"
-# }
+import {
+  to = aws_instance.api
+  id = "i-08a595754c85377a4"
+}
